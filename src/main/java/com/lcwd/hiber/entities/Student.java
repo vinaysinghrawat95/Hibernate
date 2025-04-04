@@ -27,7 +27,61 @@ public class Student
         private String about;
 
 
+        /* All Getter and Setter */
 
+        public long getId() {
+                return id;
+        }
 
+        public void setId(long id) {
+                this.id = id;
+        }
 
+        public String getName() {
+                return name;
+        }
+
+        public void setName(String name) {
+                this.name = name;
+        }
+
+        public String getCollage() {
+                return collage;
+        }
+
+        public void setCollage(String collage) {
+                this.collage = collage;
+        }
+
+        public String getPhone() {
+                return phone;
+        }
+
+        public void setPhone(String phone) {
+                this.phone = phone;
+        }
+
+        public String getFatherName() {
+                return fatherName;
+        }
+
+        public void setFatherName(String fatherName) {
+                this.fatherName = fatherName;
+        }
+
+        public boolean getActiveStatus() {
+                return activeStatus;
+        }
+
+        public void setActiveStatus(boolean activeStatus) {
+                this.activeStatus = activeStatus;
+        }
+
+        public String getAbout() {
+                return about;
+        }
+
+        public void setAbout(String about) {
+                this.about = about;
+        }
 }
