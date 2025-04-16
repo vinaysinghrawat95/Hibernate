@@ -9,8 +9,8 @@ import org.hibernate.Transaction;
 
 /**
  * Hello world!
- *
- */
+ **/
+
 public class App 
 {
     public static void main( String[] args )
@@ -41,8 +41,8 @@ public class App
         try
         {
             transaction = session.beginTransaction();
-          //  session.persist(student);
-            session.persist(certificate);
+            session.persist(student);
+//            session.persist(certificate);
             transaction.commit();
             System.out.println("Student saved successfully");
 

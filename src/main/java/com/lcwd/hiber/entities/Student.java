@@ -2,6 +2,9 @@ package com.lcwd.hiber.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "student")
 public class Student
@@ -25,6 +28,9 @@ public class Student
 
         @Lob  //@Lob is use for large object, where we can't know how much size of the object
         private String about;
+
+        @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Certificate> certificates = new ArrayList<>();
 
 
         /* All Getter and Setter */
