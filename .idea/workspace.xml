@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1215f53b-0812-4fdd-b021-1ad066db6548" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/StudentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/entities/Certificate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/entities/Certificate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/entities/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/util/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lcwd/hiber/util/HibernateUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

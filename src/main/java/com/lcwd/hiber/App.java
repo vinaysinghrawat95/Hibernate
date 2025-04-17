@@ -42,7 +42,7 @@ public class App
         {
             transaction = session.beginTransaction();
             session.persist(student);
-//            session.persist(certificate);
+            session.persist(certificate);
             transaction.commit();
             System.out.println("Student saved successfully");
 
