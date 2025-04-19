@@ -41,26 +41,6 @@ public class StudentService
         }
     }
         //update
-        public Student updateStudent(long id, Student student)
-        {
-            try(Session session = sessionFactory.openSession())
-            {
-                Transaction transaction1 = session.beginTransaction();
-                Student oldStudent = session.get(Student.class , id);
-                if(oldStudent != null)
-                {
-                    oldStudent.setName(student.getName());
-                    oldStudent.setFatherName(student.getFatherName());
 
-                    // ...update more information
-
-                   oldStudent =  session.merge(oldStudent);
-
-                }
-                transaction.commit();
-                return oldStudent;
-            }
-
-        }
 }
 
