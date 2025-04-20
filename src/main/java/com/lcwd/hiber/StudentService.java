@@ -41,6 +41,29 @@ public class StudentService
         }
     }
         //update
+        // update
+        public void updateStudent(Student updatedStudent) {
+            try (Session session = sessionFactory.openSession()) {
+                transaction = session.beginTransaction();
+
+                // Fetch the existing student from the database
+                Student existingStudent = session.get(Student.class, updatedStudent.getId());
+
+                if (existingStudent != null) {
+                    // Update the fields
+                    existingStudent.setName(updatedStudent.getName());
+
+                    session.update(existingStudent);
+                    transaction.commit();
+                    System.out.println("Student updated successfully.");
+                } else {
+                    System.out.println("Student not found with ID: " + updatedStudent.getId());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
 
 }
 
