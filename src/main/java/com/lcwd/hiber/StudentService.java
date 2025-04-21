@@ -2,35 +2,31 @@ package com.lcwd.hiber;
 
 import com.lcwd.hiber.entities.Student;
 import com.lcwd.hiber.util.HibernateUtil;
+import jakarta.persistence.Id;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import java.sql.SQLOutput;
 
-public class StudentService
-{
+public class StudentService {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Transaction transaction = null;
+
     //save
-    public void saveStudent(Student student)
-    {
-        try(Session session = sessionFactory.openSession())
-        {
+    public void saveStudent(Student student) {
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.persist(student);
             transaction.commit();
             System.out.println("Save succesfully");
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     //get by id
-    public Student getByid(long id)
-    {
+    public Student getByid(long id) {
         try (Session session = sessionFactory.openSession()) {
             Student student = session.get(Student.class, id);
             return student;
@@ -40,30 +36,51 @@ public class StudentService
             return null;
         }
     }
-        //update
-        // update
-        public void updateStudent(Student updatedStudent) {
-            try (Session session = sessionFactory.openSession()) {
-                transaction = session.beginTransaction();
 
-                // Fetch the existing student from the database
-                Student existingStudent = session.get(Student.class, updatedStudent.getId());
+    //update
+    public Student updateStudent(long id, Student student) {
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
 
-                if (existingStudent != null) {
-                    // Update the fields
-                    existingStudent.setName(updatedStudent.getName());
+            Student oldStudent = session.get(Student.class, student.getId());
 
-                    session.update(existingStudent);
-                    transaction.commit();
-                    System.out.println("Student updated successfully.");
-                } else {
-                    System.out.println("Student not found with ID: " + updatedStudent.getId());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (oldStudent != null) {
+
+                oldStudent.setName(student.getName());
+                oldStudent.setFatherName(student.getFatherName());
+
+                oldStudent = session.merge(oldStudent);
+
             }
+            transaction.commit();
+            System.out.println("Student updated successfully.");
+            return oldStudent;
+
+        }
+    }
+
+    //Delete
+    public void deleteStudent(long id)
+    {
+        try(Session session = sessionFactory.openSession())
+        {
+            Transaction transaction = session.beginTransaction();
+            Student student = session.get(Student.class,id);
+
+            if(student != null)
+            {
+                session.remove(student);
+                transaction.commit();
+                System.out.println("Student deleted successfully.");
+            }
+            else
+            {
+                System.out.println("Student not found !!");
+            }
+
+            
         }
 
-
+    }
 }
 
