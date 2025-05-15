@@ -26,6 +26,7 @@ public class App
         student.setAbout("I am a student");
 
         Certificate certificate = new Certificate();
+
         certificate.setAbout("Hey this is my carrier goals");
         certificate.setCertificateName("App Developer");
         certificate.setLink("www.mycertificate.com");

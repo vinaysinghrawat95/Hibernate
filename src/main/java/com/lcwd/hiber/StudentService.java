@@ -7,10 +7,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import java.rmi.StubNotFoundException;
 import java.sql.SQLOutput;
+import java.util.List;
+
 
 public class StudentService {
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Transaction transaction = null;
 
     //save
@@ -28,8 +33,8 @@ public class StudentService {
     //get by id
     public Student getByid(long id) {
         try (Session session = sessionFactory.openSession()) {
-            Student student = session.get(Student.class, id);
-            return student;
+
+            return session.get(Student.class, id);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,10 +82,44 @@ public class StudentService {
             {
                 System.out.println("Student not found !!");
             }
-
-            
         }
-
     }
+
+    //HQl[JPA] --> native query
+    //Database independent
+
+    //get all student using HQL
+    public List<Student> getAllStudentHQL()
+    {
+        try(Session session = sessionFactory.openSession())
+        {
+            String getHQL = "FROM Student";
+            Query<Student> query = session.createQuery(getHQL, Student.class);
+            return query.list();
+        }
+    }
+
+    // get student by name
+    public Student getStudentNameByHQL(String name)
+    {
+        try(Session session = sessionFactory.openSession())
+        {
+            String getNameHQL = "FROM Student WHERE name = :studentName";
+            Query<Student> query = session.createQuery(getNameHQL, Student.class);
+            query.setParameter("studentName", name);
+            return query.uniqueResult();
+        }
+    }
+
+
+    //Criteria API
+
+
+
+
+
+
+
+
 }
 
