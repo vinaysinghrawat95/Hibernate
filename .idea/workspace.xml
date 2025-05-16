@@ -70,11 +70,6 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="QodanaReportsService">
-    <option name="descriptions">
-      <ReportDescription localRun="true" path="C:\Users\vinay\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="64f8def1-fd7e-416a-bc77-136034ce0774" reportId="Hibernate/qodana/2025-03-29" />
-    </option>
-  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\vinay\IdeaProjects\Hibernate\src\main\resources" />

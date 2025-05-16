@@ -2,15 +2,15 @@ package com.lcwd.hiber;
 
 import com.lcwd.hiber.entities.Student;
 import com.lcwd.hiber.util.HibernateUtil;
-import jakarta.persistence.Id;
-import org.hibernate.HibernateException;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+import org.hibernate.query.criteria.JpaCriteriaQuery;
 
-import java.rmi.StubNotFoundException;
-import java.sql.SQLOutput;
 import java.util.List;
 
 
@@ -24,7 +24,8 @@ public class StudentService {
             transaction = session.beginTransaction();
             session.persist(student);
             transaction.commit();
-            System.out.println("Save succesfully");
+            System.out.println("Save succe" +
+                    "sfully");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -113,7 +114,31 @@ public class StudentService {
 
 
     //Criteria API
+    //Get all student of same college
+    public List<Student> getStudentsByCollegeCriteria(String college)
+    {
+        try(Session session = sessionFactory.openSession()) {
+            HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Student> query = criteriaBuilder.createQuery(Student.class);
+            Root<Student> root = query.from(Student.class);
+            query.select(root).where(criteriaBuilder.equal(root.get("college"),college));
+            Query<Student> query2 = session.createQuery(query);
+            return query2.getResultList();
+        }
+    }
 
+    //Get the page number and size
+    public List<Student> getStudentWithPagination(int pageNo, int pageSize)
+    {
+        try(Session session = sessionFactory.openSession())
+        {
+            String pagiQuery = "FROM Student";
+            Query<Student> query = session.createQuery(pagiQuery,Student.class);
+            query.setFirstResult((pageNo-1)*pageSize);
+            query.setMaxResults(pageSize);
+            return query.list();
+        }
+    }
 
 
 
